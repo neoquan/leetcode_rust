@@ -11,15 +11,15 @@ pub fn product_except_self(nums: Vec<i32>) -> Vec<i32> {
     for i in 0..n {
         result[i] = prefix;
         prefix *= nums[i];
-        println!("prefix pass  i={i}  wrote result[{i}], prefix now = {prefix}");
+        // println!("prefix pass  i={i}  wrote result[{i}], prefix now = {prefix}");
     }
-    println!("after prefix loop: prefix = {prefix}, result = {result:?}");
+    // println!("after prefix loop: prefix = {prefix}, result = {result:?}");
     for i in (0..n).rev() {
         result[i] *= suffix;
         suffix *= nums[i];
-        println!("suffix pass  i={i}  result[{i}]={}, suffix now = {suffix}", result[i]);
+        // println!("suffix pass  i={i}  result[{i}]={}, suffix now = {suffix}", result[i]);
     }
-    println!("after suffix loop: suffix = {suffix}, result = {result:?}");
+    // println!("after suffix loop: suffix = {suffix}, result = {result:?}");
     result
 }
 
