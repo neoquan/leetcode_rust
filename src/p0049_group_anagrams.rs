@@ -2,7 +2,7 @@
 
 use std::collections::HashMap;
 
-// 
+//
 pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     let mut storage: HashMap<[i32; 26], Vec<String>> = HashMap::new();
 
@@ -19,9 +19,9 @@ pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
 
 fn normalize(mut groups: Vec<Vec<String>>) -> Vec<Vec<String>> {
     for g in &mut groups {
-        g.sort();               // sort within each group
+        g.sort(); // sort within each group
     }
-    groups.sort();              // then sort the groups themselves
+    groups.sort(); // then sort the groups themselves
     groups
 }
 
@@ -31,12 +31,19 @@ mod tests {
 
     #[test]
     fn example_1() {
-        let got = group_anagrams(vec!["eat".to_string(), "tea".to_string(),
-                                    "tan".to_string(), "ate".to_string(),
-                                    "nat".to_string(), "bat".to_string()]);
-        let want = vec![vec!["bat".to_string()],
-                        vec!["nat".to_string(), "tan".to_string()],
-                        vec!["ate".to_string(), "eat".to_string(), "tea".to_string()]];
+        let got = group_anagrams(vec![
+            "eat".to_string(),
+            "tea".to_string(),
+            "tan".to_string(),
+            "ate".to_string(),
+            "nat".to_string(),
+            "bat".to_string(),
+        ]);
+        let want = vec![
+            vec!["bat".to_string()],
+            vec!["nat".to_string(), "tan".to_string()],
+            vec!["ate".to_string(), "eat".to_string(), "tea".to_string()],
+        ];
         assert_eq!(normalize(got), normalize(want));
     }
 }

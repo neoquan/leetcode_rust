@@ -1,5 +1,4 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
-    
 
 // use std::collections::HashMap;
 // pub fn first_uniq_char(s: String) -> i32 {
@@ -16,7 +15,6 @@
 //     }
 //     -1
 // }
-
 
 pub fn first_uniq_char(s: String) -> i32 {
     let mut counts = [0i32; 26];

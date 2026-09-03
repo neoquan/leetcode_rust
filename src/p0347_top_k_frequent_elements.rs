@@ -1,6 +1,5 @@
 // https://leetcode.com/problems/top-k-frequent-elements/
 
-
 use std::collections::HashMap;
 
 pub fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
@@ -31,12 +30,11 @@ mod tests {
 
     #[test]
     fn example_1() {
-        assert_eq!(top_k_frequent(vec![1,1,1,2,2,3], 2), vec![1,2]);
+        assert_eq!(top_k_frequent(vec![1, 1, 1, 2, 2, 3], 2), vec![1, 2]);
     }
 
     // #[test]
     // fn example_2() {
     //     assert_eq!(product_except_self(vec![-1,1,0,-3,3]), vec![0,0,9,0,0]);
     // }
-
 }

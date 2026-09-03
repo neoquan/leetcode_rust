@@ -43,14 +43,16 @@ pub fn is_anagram(s: String, t: String) -> bool {
     counts.iter().all(|&c| c == 0)
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn example_1() {
-        assert_eq!(is_anagram("anagram".to_string(), "nagaram".to_string()), true);
+        assert_eq!(
+            is_anagram("anagram".to_string(), "nagaram".to_string()),
+            true
+        );
     }
 
     #[test]
