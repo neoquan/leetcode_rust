@@ -2,7 +2,6 @@
 
 use std::collections::HashSet;
 
-
 // First, turn vector in a Hash Set in order to have unique element
 // Second, we initialize 2 trackers: current and length
 // Loop through the set, then if (i-1) is not in the set, then i is the run-start => update current
@@ -42,11 +41,11 @@ mod tests {
 
     #[test]
     fn example_2() {
-        assert_eq!(longest_consecutive(vec![0,3,7,2,5,8,4,6,0,1]), 9);
+        assert_eq!(longest_consecutive(vec![0, 3, 7, 2, 5, 8, 4, 6, 0, 1]), 9);
     }
 
-        #[test]
+    #[test]
     fn example_3() {
-        assert_eq!(longest_consecutive(vec![1,0,1,2]), 3);
+        assert_eq!(longest_consecutive(vec![1, 0, 1, 2]), 3);
     }
 }
