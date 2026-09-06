@@ -1,6 +1,5 @@
 // https://leetcode.com/problems/range-sum-query-immutable/
 
-
 struct NumArray {
     prefix: Vec<i32>,
 }
@@ -28,15 +27,15 @@ mod tests {
         // [-2, 0, 3, -5, 2, -1] is the example from the problem
         let arr = NumArray::new(vec![-2, 0, 3, -5, 2, -1]);
 
-        assert_eq!(arr.sum_range(0, 2), 1);   // -2 + 0 + 3
-        assert_eq!(arr.sum_range(2, 5), -1);  // 3 + -5 + 2 + -1
-        assert_eq!(arr.sum_range(0, 5), -3);  // whole array
+        assert_eq!(arr.sum_range(0, 2), 1); // -2 + 0 + 3
+        assert_eq!(arr.sum_range(2, 5), -1); // 3 + -5 + 2 + -1
+        assert_eq!(arr.sum_range(0, 5), -3); // whole array
     }
 
     #[test]
     fn single_element() {
         let arr = NumArray::new(vec![5]);
-        assert_eq!(arr.sum_range(0, 0), 5);   // left == right, one element
+        assert_eq!(arr.sum_range(0, 0), 5); // left == right, one element
     }
 
     #[test]

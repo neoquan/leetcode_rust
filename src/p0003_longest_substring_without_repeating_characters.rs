@@ -30,7 +30,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
 
         println!("In right index {right}, the hashmap storage is {storage:?}");
 
-        let window_len= right - left + 1;
+        let window_len = right - left + 1;
 
         if window_len > max_len {
             max_len = window_len;
