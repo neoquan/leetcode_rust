@@ -8,6 +8,7 @@ pub mod p0136_single_number;
 pub mod p0217_contains_duplicates;
 pub mod p0238_product_of_array_except_self;
 pub mod p0242_valid_anagram;
+pub mod p0303_range_sum_query_immutable;
 pub mod p0347_top_k_frequent_elements;
 pub mod p0387_first_uniq_char;
 pub mod p0560_subarray_sum_equals_k;

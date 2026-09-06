@@ -12,7 +12,7 @@ use std::collections::HashMap;
 
 pub fn length_of_longest_substring(s: String) -> i32 {
     let mut storage: HashMap<char, usize> = HashMap::new();
-    let mut chars: Vec<char> = s.chars().collect();
+    let chars: Vec<char> = s.chars().collect();
 
     let mut left: usize = 0;
     let mut max_len: usize = 0;
