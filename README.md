@@ -21,7 +21,7 @@ Each problem file holds the solution plus a `#[cfg(test)] mod tests` block.
 | `cargo check` | Type-checks without producing a binary. Fast inner loop while solving. |
 | `cargo test` | Compiles and runs every problem's tests. |
 | `cargo test p0001` | Runs only tests whose path matches `p0001`. |
-| `cargo test -- --nocapture` | Runs tests but lets `println!` output through (hidden by default on pass). |
+| `cargo test p0003 -- --no-capture` | Runs tests but lets `println!` output through (hidden by default on pass). |
 | `cargo build` | Compiles the whole crate (debug). Rarely needed directly for practice. |
 | `cargo run --bin p0001` | Runs a `src/bin/p0001.rs` with a `main` — for problems you want to execute, not assert. |
 | `cargo clippy` | Lint pass. Catches non-idiomatic Rust — worth running as you learn. |
