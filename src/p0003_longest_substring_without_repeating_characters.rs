@@ -2,26 +2,35 @@
 
 use std::collections::HashMap;
 
+// The idea is to use 2 techniques: two pointer and sliding windows
+// Firstly, we create hashmap to store: previously visited index (cur_char)
+// we keep left pointer = 0 initially, and then iterate right through chars.
+// save current char as chars[right]
+// if that cur_char exist in hashmap => then compare value of that key cur_char with left pointer
+// if higher or equal, we increment left pointer by +1 to prev_index
+// We also need to track windows length; if its longer than maximum length => update max_length
+
 pub fn length_of_longest_substring(s: String) -> i32 {
-    let chars: Vec<char> = s.chars().collect();
-    let mut last_seen: HashMap<char, usize> = HashMap::new();
+    let mut storage: HashMap<char, usize> = HashMap::new();
+    let mut chars: Vec<char> = s.chars().collect();
 
     let mut left: usize = 0;
     let mut max_len: usize = 0;
 
     for right in 0..chars.len() {
-        let current_char = chars[right];
-        if let Some(&prev_index) = last_seen.get(&current_char) {
+        let cur_char = chars[right];
+
+        if let Some(&prev_index) = storage.get(&cur_char) {
             if prev_index >= left {
                 left = prev_index + 1;
             }
         }
 
-        last_seen.insert(current_char, right);
+        storage.insert(cur_char, right);
 
-        println!("In right index {right}, the hashmap last_seen is {last_seen:?}");
+        println!("In right index {right}, the hashmap storage is {storage:?}");
 
-        let window_len = right - left + 1;
+        let window_len= right - left + 1;
 
         if window_len > max_len {
             max_len = window_len;
