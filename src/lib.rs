@@ -2,6 +2,7 @@ pub mod common;
 
 pub mod p0001_two_sum;
 pub mod p0003_longest_substring_without_repeating_characters;
+pub mod p0014_longest_common_prefix;
 pub mod p0049_group_anagrams;
 pub mod p0128_longest_consecutive_sequence;
 pub mod p0136_single_number;
@@ -17,5 +18,8 @@ pub mod p0974_subarray_sums_divisible_by_k;
 pub mod p1512_number_of_good_pairs;
 
 pub mod pq1_array1;
+pub mod pq1_array2;
 pub mod pq2_array1;
+pub mod pq2_array2;
 pub mod pq3_array1;
+pub mod pq3_array2;
