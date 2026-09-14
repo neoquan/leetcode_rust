@@ -19,6 +19,7 @@ pub mod p1512_number_of_good_pairs;
 
 pub mod pq1_array1;
 pub mod pq1_array2;
+pub mod pq1_stack;
 pub mod pq2_array1;
 pub mod pq2_array2;
 pub mod pq3_array1;

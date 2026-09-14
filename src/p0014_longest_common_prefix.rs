@@ -2,13 +2,11 @@
 
 pub fn longest_common_prefix(strs: Vec<String>) -> String {
     let min_len = strs.iter().map(|s| s.len()).min().unwrap_or(0);
-
-    for c in 0..min_len {
-        let refer = strs[0].as_bytes()[c];
-
-        for s in &strs {
-            if refer != s.as_bytes()[c] {
-                return strs[0][0..c].to_string();
+    for col in 0..min_len {
+        let refer = strs[0].as_bytes()[col];
+        for str in &strs {
+            if refer != str.as_bytes()[col] {
+                return strs[0][0..col].to_string();
             }
         }
     }
