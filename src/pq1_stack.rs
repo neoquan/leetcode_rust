@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/build-an-array-with-stack-operations/description/?envType=problem-list-v2&envId=dsa-linear-shoal-stack
 
-// For each number i you read from the stream (1, 2, …, n): always Push it. 
+// For each number i you read from the stream (1, 2, …, n): always Push it.
 // Then, if i is not the number target currently wants, immediately Pop it back off.
 // If it is the number target wants, leave it on the stack.
 
