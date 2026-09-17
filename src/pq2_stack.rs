@@ -2,7 +2,6 @@
 
 use std::str::FromStr;
 
-
 enum Op {
     Add,
     Sub,
@@ -24,12 +23,11 @@ impl FromStr for Token {
             "-" => Token::Operator(Op::Sub),
             "*" => Token::Operator(Op::Mul),
             "/" => Token::Operator(Op::Div),
-            _   => Token::Num(s.parse::<i32>()?),
+            _ => Token::Num(s.parse::<i32>()?),
         };
         Ok(token)
     }
 }
-
 
 pub fn eval_rpn(tokens: Vec<String>) -> i32 {
     let mut stack: Vec<i32> = Vec::new();
@@ -37,18 +35,20 @@ pub fn eval_rpn(tokens: Vec<String>) -> i32 {
     for t in tokens {
         let tok = match t.parse::<Token>() {
             Ok(tok) => tok,
-            Err(_)  => continue,
+            Err(_) => continue,
         };
         match tok {
             Token::Num(n) => stack.push(n),
             Token::Operator(op) => {
-                let b = match stack.pop() {      // top of stack → RIGHT operand
+                let b = match stack.pop() {
+                    // top of stack → RIGHT operand
                     Some(v) => v,
-                    None    => continue,
+                    None => continue,
                 };
-                let a = match stack.pop() {      // next → LEFT operand
+                let a = match stack.pop() {
+                    // next → LEFT operand
                     Some(v) => v,
-                    None    => continue,
+                    None => continue,
                 };
 
                 let r = match op {
@@ -65,7 +65,7 @@ pub fn eval_rpn(tokens: Vec<String>) -> i32 {
     }
     match stack.pop() {
         Some(v) => v,
-        None    => 0,
+        None => 0,
     }
 }
 
@@ -76,7 +76,14 @@ mod tests {
     #[test]
     fn example_1() {
         assert_eq!(
-            eval_rpn(vec!["2".to_string(),"1".to_string(),"+".to_string(),"3".to_string(),"*".to_string()]), 9
+            eval_rpn(vec![
+                "2".to_string(),
+                "1".to_string(),
+                "+".to_string(),
+                "3".to_string(),
+                "*".to_string()
+            ]),
+            9
         );
     }
 
