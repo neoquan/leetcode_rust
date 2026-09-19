@@ -1,21 +1,5 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
 
-// use std::collections::HashMap;
-// pub fn first_uniq_char(s: String) -> i32 {
-//     let mut storage: HashMap<char, i32> = HashMap::new();
-
-//     for c in s.chars() {
-//         *storage.entry(c).or_insert(0) += 1;
-//     }
-//     for (index, c) in s.chars().enumerate() {
-//         match storage.get(&c) {
-//             Some(count) if *count == 1 => return index as i32,
-//             _ => {}
-//         }
-//     }
-//     -1
-// }
-
 pub fn first_uniq_char(s: String) -> i32 {
     let mut counts = [0i32; 26];
     let bytes = s.as_bytes();
@@ -32,6 +16,7 @@ pub fn first_uniq_char(s: String) -> i32 {
     -1
 }
 
+#[cfg(test)]
 mod tests {
     use super::*;
 
