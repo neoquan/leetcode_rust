@@ -21,6 +21,7 @@ pub mod pq1_array1;
 pub mod pq1_array2;
 pub mod pq1_monostack;
 pub mod pq2_monostack;
+pub mod pq3_monostack;
 pub mod pq1_stack;
 pub mod pq2_array1;
 pub mod pq2_array2;
