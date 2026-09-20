@@ -3,7 +3,7 @@
 pub fn final_prices(prices: Vec<i32>) -> Vec<i32> {
     let n = prices.len();
     let mut result: Vec<i32> = Vec::with_capacity(n);
-    
+
     for i in 0..n {
         let mut discount = 0;
         for j in (i + 1)..n {
