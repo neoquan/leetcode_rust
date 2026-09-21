@@ -13,6 +13,7 @@ pub mod p0303_range_sum_query_immutable;
 pub mod p0347_top_k_frequent_elements;
 pub mod p0387_first_uniq_char;
 pub mod p0496_next_greater_element_i;
+pub mod p0503_next_greater_element_ii;
 pub mod p0523_continuous_subarray_sum;
 pub mod p0560_subarray_sum_equals_k;
 pub mod p0974_subarray_sums_divisible_by_k;
