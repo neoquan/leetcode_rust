@@ -16,6 +16,7 @@ pub mod p0496_next_greater_element_i;
 pub mod p0503_next_greater_element_ii;
 pub mod p0523_continuous_subarray_sum;
 pub mod p0560_subarray_sum_equals_k;
+pub mod p0901_online_stock_span;
 pub mod p0974_subarray_sums_divisible_by_k;
 pub mod p1512_number_of_good_pairs;
 
