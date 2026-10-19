@@ -1,36 +1,5 @@
 // https://leetcode.com/problems/valid-anagram/description/
 
-// use std::collections::HashMap;
-
-// pub fn is_anagram(s: String, t: String) -> bool {
-//     if s.len() != t.len() {
-//         return false
-//     }
-//     let mut counts: HashMap<char, i32> = HashMap::new();
-//     let mut countt: HashMap<char, i32> = HashMap::new();
-//     for c in s.chars() {
-//         *counts.entry(c).or_insert(0) += 1;
-//     }
-//     for c in t.chars() {
-//         *countt.entry(c).or_insert(0) += 1;
-//     }
-//     counts == countt
-// }
-
-// pub fn is_anagram(s: String, t: String) -> bool {
-//     if s.len() != t.len() {
-//         return false;
-//     }
-//     let mut counts: HashMap<char, i32> = HashMap::new();
-//     for c in s.chars() {
-//         *counts.entry(c).or_insert(0) += 1;
-//     }
-//     for c in t.chars() {
-//         *counts.entry(c).or_insert(0) -= 1;
-//     }
-//     counts.values().all(|&v| v == 0) // return Boolean
-// }
-
 pub fn is_anagram(s: String, t: String) -> bool {
     if s.len() != t.len() {
         return false;
