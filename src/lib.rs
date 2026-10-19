@@ -8,6 +8,7 @@ pub mod p0049_group_anagrams;
 pub mod p0128_longest_consecutive_sequence;
 pub mod p0136_single_number;
 pub mod p0205_isomorphic_strings;
+pub mod p0209_minimum_size_subarray_sum;
 pub mod p0217_contains_duplicates;
 pub mod p0238_product_of_array_except_self;
 pub mod p0242_valid_anagram;
