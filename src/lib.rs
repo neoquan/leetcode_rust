@@ -14,6 +14,7 @@ pub mod p0238_product_of_array_except_self;
 pub mod p0242_valid_anagram;
 pub mod p0287_find_the_duplicate_number;
 pub mod p0303_range_sum_query_immutable;
+pub mod p0316_remove_duplicate_letters;
 pub mod p0347_top_k_frequent_elements;
 pub mod p0387_first_uniq_char;
 pub mod p0442_find_all_duplicates_in_an_array;
