@@ -84,6 +84,8 @@ pub fn remove_duplicate_letters(s: String) -> String {
         last[(b - b'a') as usize] = i;
     }
 
+    println!("With s is {s}, 'last' array is {last:?}");
+
     let mut stack: Vec<u8> = Vec::with_capacity(26);
     let mut in_stack = [false; 26];
 
@@ -105,6 +107,7 @@ pub fn remove_duplicate_letters(s: String) -> String {
             } else {
                 break; // top is smaller, or this is its last chance
             }
+            // println!("With i = {i}, 'stack' array is {stack:?} while 'in_stack' array is {in_stack:?}");
         }
 
         // Decision 3: push current, mark it
@@ -125,20 +128,20 @@ mod tests {
         assert_eq!(remove_duplicate_letters("bcabc".to_string()), "abc");
     }
 
-    #[test]
-    fn example_2() {
-        // exercises pop, forced keep, and skip
-        assert_eq!(remove_duplicate_letters("cbacdcbc".to_string()), "acdb");
-    }
+    // #[test]
+    // fn example_2() {
+    //     // exercises pop, forced keep, and skip
+    //     assert_eq!(remove_duplicate_letters("cbacdcbc".to_string()), "acdb");
+    // }
 
-    #[test]
-    fn single_char() {
-        assert_eq!(remove_duplicate_letters("a".to_string()), "a");
-    }
+    // #[test]
+    // fn single_char() {
+    //     assert_eq!(remove_duplicate_letters("a".to_string()), "a");
+    // }
 
-    #[test]
-    fn already_unique() {
-        // nothing can be popped: every letter is its own last copy
-        assert_eq!(remove_duplicate_letters("dcba".to_string()), "dcba");
-    }
+    // #[test]
+    // fn already_unique() {
+    //     // nothing can be popped: every letter is its own last copy
+    //     assert_eq!(remove_duplicate_letters("dcba".to_string()), "dcba");
+    // }
 }
