@@ -26,6 +26,7 @@ pub mod p0560_subarray_sum_equals_k;
 pub mod p0890_find_and_replace_pattern;
 pub mod p0901_online_stock_span;
 pub mod p0974_subarray_sums_divisible_by_k;
+pub mod p1081_smallest_subsequence_of_distinct_characters;
 pub mod p1475_final_prices_with_a_special_discount_in_a_shop;
 pub mod p1512_number_of_good_pairs;
 pub mod p1944_number_of_visible_people_in_a_queue;
