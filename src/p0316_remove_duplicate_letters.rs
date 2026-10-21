@@ -7,6 +7,49 @@
 // GUIDELINE
 // ============================================================================
 //
+// 0. THE IDEA (why the solution looks the way it does, not how to code it)
+//
+//    Three intuitions. If you believe these three, the algorithm is forced;
+//    you are not inventing it, you are just obeying them.
+//
+//    IDEA 1 -- The earliest slot is everything.
+//      Lexicographic order is read left to right and the first difference
+//      decides the whole comparison. "az" < "b..." no matter what follows.
+//      So a smaller letter sitting one position earlier is worth more than
+//      anything you could ever gain later. The result is therefore: make
+//      the first letter as small as you can afford, then the second, and so
+//      on. That single fact is WHY the approach is greedy left-to-right and
+//      not some global search -- early wins dominate late wins absolutely.
+//
+//    IDEA 2 -- A letter that appears again later is a "free undo".
+//      You are walking the string and have already committed some letters.
+//      You now meet a letter smaller than one you kept. Do you regret the
+//      bigger one? Only if you can safely get rid of it. And you CAN get rid
+//      of it for free precisely when it occurs again further ahead -- because
+//      then you haven't truly lost it; its later copy will let you place it
+//      back wherever it belongs. A future occurrence is a safety net that
+//      turns "evict the bigger letter to make room for this smaller one"
+//      into a move with zero downside.
+//
+//    IDEA 3 -- A letter with no copy ahead is load-bearing; it must stay.
+//      The result must still contain every distinct letter. So if the bigger
+//      letter you're tempted to drop never shows up again, dropping it makes
+//      the answer invalid -- there is no later copy to recover it from. Here
+//      coverage beats smallness: you are forced to keep it even though a
+//      smaller letter is knocking. This is the "guard" that separates this
+//      problem from a plain greedy -- the regret from IDEA 2 is only
+//      actionable when IDEA 3 permits it.
+//
+//    Put together: scan left to right; whenever a small letter arrives, undo
+//    as many earlier-but-bigger commitments as are safe to undo (IDEA 2),
+//    stopping at any that are load-bearing (IDEA 3), because each undo buys a
+//    smaller letter in an earlier slot and earlier slots are what win
+//    (IDEA 1). "Undo the most recent commitments" is literally a stack --
+//    which is why the mechanics below are a monotonic stack with a guard.
+//    And a letter already kept needs no action: everything above it is
+//    bigger (or it would have been undone), so it already sits in its best
+//    possible slot -- nothing to gain by moving it.
+//
 // 1. RECOGNIZE THE PATTERN
 //    - "smallest lexicographic"      -> small letters as early as possible
 //                                       -> pop bigger letters off the end
@@ -76,6 +119,15 @@
 // ============================================================================
 
 pub fn remove_duplicate_letters(s: String) -> String {
+    // Trace helper: render a byte stack as readable letters.
+    // (A bare `{stack:?}` on Vec<u8> prints ASCII codes like [97, 99], not "ac".)
+    let show = |st: &[u8]| -> String { st.iter().map(|&b| b as char).collect() };
+
+    // One line per character; action is padded so the `stack=` column lines up.
+    let step = |i: usize, c: char, action: &str, st: &[u8]| {
+        println!("i={i} ch={c}  {action:<30} stack={}", show(st));
+    };
+
     let bytes = s.as_bytes();
 
     // Pass 1: last index of each letter. Overwrite on every hit; the later write wins.
@@ -84,17 +136,26 @@ pub fn remove_duplicate_letters(s: String) -> String {
         last[(b - b'a') as usize] = i;
     }
 
-    println!("With s is {s}, 'last' array is {last:?}");
+    println!("\ninput = {s:?}");
+    print!("last-seen index: ");
+    for (i, &b) in bytes.iter().enumerate() {
+        if last[(b - b'a') as usize] == i {
+            print!("{c}={i} ", c = b as char); // print each letter once, at its last index
+        }
+    }
+    println!("\n{:-<60}", "");
 
     let mut stack: Vec<u8> = Vec::with_capacity(26);
     let mut in_stack = [false; 26];
 
     // Pass 2: greedy monotonic stack
     for (i, &b) in bytes.iter().enumerate() {
+        let c = b as char;
         let idx = (b - b'a') as usize;
 
         // Decision 1: already in the result -> skip
         if in_stack[idx] {
+            step(i, c, "SKIP (already kept)", &stack);
             continue;
         }
 
@@ -104,35 +165,41 @@ pub fn remove_duplicate_letters(s: String) -> String {
             if idx < top_idx && i < last[top_idx] {
                 stack.pop();
                 in_stack[top_idx] = false; // top left -> clear ITS marker
+                step(i, c, &format!("pop '{}' (bigger, recurs later)", top as char), &stack);
             } else {
+                if idx < top_idx {
+                    // bigger top, but this is its last copy -> coverage forces the keep
+                    step(i, c, &format!("keep '{}' (bigger, but LAST copy)", top as char), &stack);
+                }
                 break; // top is smaller, or this is its last chance
             }
-            // println!("With i = {i}, 'stack' array is {stack:?} while 'in_stack' array is {in_stack:?}");
         }
 
         // Decision 3: push current, mark it
         stack.push(b);
         in_stack[idx] = true;
+        step(i, c, "push", &stack);
     }
 
-    // Vec<u8> -> String without Result/unwrap: u8 -> char -> collect
-    stack.iter().map(|&b| b as char).collect()
+    let result: String = stack.iter().map(|&b| b as char).collect();
+    println!("{:-<60}\nresult = {result:?}\n", "");
+    result
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn example_1() {
-        assert_eq!(remove_duplicate_letters("bcabc".to_string()), "abc");
-    }
-
     // #[test]
-    // fn example_2() {
-    //     // exercises pop, forced keep, and skip
-    //     assert_eq!(remove_duplicate_letters("cbacdcbc".to_string()), "acdb");
+    // fn example_1() {
+    //     assert_eq!(remove_duplicate_letters("bcabc".to_string()), "abc");
     // }
+
+    #[test]
+    fn example_2() {
+        // exercises pop, forced keep, and skip
+        assert_eq!(remove_duplicate_letters("cbacdcbc".to_string()), "acdb");
+    }
 
     // #[test]
     // fn single_char() {
