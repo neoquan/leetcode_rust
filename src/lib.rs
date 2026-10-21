@@ -17,6 +17,7 @@ pub mod p0303_range_sum_query_immutable;
 pub mod p0316_remove_duplicate_letters;
 pub mod p0347_top_k_frequent_elements;
 pub mod p0387_first_uniq_char;
+pub mod p0402_remove_k_digits;
 pub mod p0442_find_all_duplicates_in_an_array;
 pub mod p0448_find_all_numbers_disappeared_in_an_array;
 pub mod p0496_next_greater_element_i;
