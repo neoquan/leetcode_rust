@@ -165,11 +165,21 @@ pub fn remove_duplicate_letters(s: String) -> String {
             if idx < top_idx && i < last[top_idx] {
                 stack.pop();
                 in_stack[top_idx] = false; // top left -> clear ITS marker
-                step(i, c, &format!("pop '{}' (bigger, recurs later)", top as char), &stack);
+                step(
+                    i,
+                    c,
+                    &format!("pop '{}' (bigger, recurs later)", top as char),
+                    &stack,
+                );
             } else {
                 if idx < top_idx {
                     // bigger top, but this is its last copy -> coverage forces the keep
-                    step(i, c, &format!("keep '{}' (bigger, but LAST copy)", top as char), &stack);
+                    step(
+                        i,
+                        c,
+                        &format!("keep '{}' (bigger, but LAST copy)", top as char),
+                        &stack,
+                    );
                 }
                 break; // top is smaller, or this is its last chance
             }

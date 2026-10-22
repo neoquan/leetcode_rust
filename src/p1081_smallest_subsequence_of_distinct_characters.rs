@@ -1,6 +1,5 @@
 // https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
 
-
 // Input: s = "cbacdcbc"
 // Output: "acdb"
 
@@ -23,7 +22,7 @@ pub fn smallest_subsequence(s: String) -> String {
     for (index, &b) in bytes.iter().enumerate() {
         let idx = (b - b'a') as usize;
         if in_stack[idx] {
-            continue
+            continue;
         }
 
         while let Some(&top) = stack.last() {
@@ -59,5 +58,4 @@ mod tests {
         // exercises pop, forced keep, and skip
         assert_eq!(smallest_subsequence("cbacdcbc".to_string()), "acdb");
     }
-
 }
